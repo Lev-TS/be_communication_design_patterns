@@ -2,10 +2,20 @@
  * Short Polling:
  * 
  * Request is taking a while, I'll check with you later.
+ * 
+ * Pros:
+ * - Simple
+ * - Good for long running requests
+ * - Client can disconnect
+ * 
+ * Cons:
+ * - Too chatty
+ * - Heavy on network bandwidth
+ * - Wasted backend resources
  */
 
 
-import { env } from "env/module";
+import { env } from "@/env/module";
 import express from "express";
 
 const app = express();
@@ -28,8 +38,6 @@ app.get("/checkstatus/:jobId", (req, res) => {
   }
 })
 
-app.listen(env.PORT, () => console.log(`Listening on ${env.PORT}`))
-
 
 function startJob(jobId: string, progress: number) {
   jobs[jobId] = progress
@@ -40,3 +48,5 @@ function startJob(jobId: string, progress: number) {
 
   setTimeout(() => startJob(jobId, progress + 10), 3000)
 }
+
+export default app

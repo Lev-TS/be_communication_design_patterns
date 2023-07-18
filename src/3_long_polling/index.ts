@@ -1,11 +1,18 @@
 /**
  * Long Polling:
  *
- * Request is taking a while, I'll check with you later
+ * Request is taking a while, I'll check with you later 
  * but talk to me only when it's ready
+ * 
+ * Pros:
+ * - Less chatty
+ * - Backend friendly
+ * - Client can disconnect
+ * 
+ * Cons:
+ * - Not real time
  */
 
-import { env } from "env/module";
 import express from "express";
 
 const app = express();
@@ -24,8 +31,6 @@ app.get("/status/:jobId", async (req, res) => {
   while(await checkJobComplete(req.params.jobId) == false);
   res.end("\n\nJobStatus: complete " + jobs[req.params.jobId] + "%\n\n")
 });
-
-app.listen(env.PORT, () => console.log(`Listening on ${env.PORT}`));
 
 function startJob(jobId: string, progress: number) {
   jobs[jobId] = progress;
@@ -46,3 +51,5 @@ function checkJobComplete(jobId: string) {
     }
   });
 }
+
+export default app

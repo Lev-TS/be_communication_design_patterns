@@ -1,7 +1,20 @@
 /**
  * Push:
  * 
- * I want it as soon as possible
+ * I want it as soon as possible.
+ * 
+ * Pros:
+ * - Real time
+ * 
+ * Cons:
+ * - Clients must be online
+ * - Clients might not be able to handle
+ * - Requires a bidirectional protocol
+ * - Polling is preferred for light clients
+ * 
+ * Client Code:
+ * const ws = new WebSocket("ws://localhost:3000");
+ * sse.onmessage = message => console.log(message.data) 
  */
 
 import http from "http";
