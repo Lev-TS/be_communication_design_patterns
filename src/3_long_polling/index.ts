@@ -13,6 +13,7 @@
  * - Not real time
  */
 
+import { env } from "@/env/module";
 import express from "express";
 
 const app = express();
@@ -52,4 +53,8 @@ function checkJobComplete(jobId: string) {
   });
 }
 
-export default app
+export default function start() {
+  app.listen(env.PORT, () =>
+    console.log(`server is listening on http://localhost${env.PORT}`)
+  );
+}

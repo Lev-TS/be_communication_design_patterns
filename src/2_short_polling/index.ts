@@ -49,4 +49,8 @@ function startJob(jobId: string, progress: number) {
   setTimeout(() => startJob(jobId, progress + 10), 3000)
 }
 
-export default app
+export default function start() {
+  app.listen(env.PORT, () =>
+    console.log(`server is listening on http://localhost${env.PORT}`)
+  );
+}
