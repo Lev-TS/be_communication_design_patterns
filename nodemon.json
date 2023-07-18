@@ -1,0 +1,6 @@
+{
+    "watch": ["src"],
+    "ext": ".ts",
+    "ignore": [],
+    "exec": "ts-node src/3_long_polling/index.ts"
+}
